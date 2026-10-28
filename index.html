@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Putri Intan Aulya - Portofolio Teknik Informatika</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        pastelPink: {
+                            50: '#fff1f5',
+                            100: '#ffe4ed',
+                            200: '#fecddb',
+                            300: '#fda4bf',
+                            400: '#fb7199',
+                            500: '#f43f73',
+                            600: '#e11d53',
+                        },
+                        softYellow: {
+                            50: '#fffdcb',
+                            100: '#fffab3',
+                            200: '#fff580',
+                            300: '#ffeb4d',
+                            400: '#fde01a',
+                            500: '#e6c605',
+                        },
+                        neutralWarm: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            800: '#292524',
+                            900: '#1c1917'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Style Overrides -->
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 228, 237, 0.6);
+        }
+
+        .dark .glass-panel {
+            background: rgba(28, 25, 23, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(68, 64, 60, 0.6);
+        }
+
+        /* Subtle Glow Effects */
+        .glow-pink {
+            box-shadow: 0 10px 25px -5px rgba(251, 113, 153, 0.3);
+        }
+
+        .glow-yellow {
+            box-shadow: 0 10px 25px -5px rgba(253, 224, 26, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fafaf9;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #1c1917;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #fda4bf;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #fb7199;
+        }
+
+        /* Active Filter Button */
+        .filter-btn.active {
+            background-color: #fb7199;
+            color: white;
+            box-shadow: 0 4px 12px rgba(251, 113, 153, 0.35);
+        }
+    </style>
+</head>
+<body class="bg-neutralWarm-50 dark:bg-neutralWarm-900 text-neutralWarm-800 dark:text-neutralWarm-100 transition-colors duration-300 antialiased selection:bg-pastelPink-200 selection:text-pastelPink-600">
+
+    <!-- Header / Navbar -->
+    <header class="fixed w-full top-0 z-40 transition-all duration-300 bg-white/80 dark:bg-neutralWarm-900/80 backdrop-blur-md border-b border-pastelPink-100 dark:border-neutralWarm-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-pastelPink-400 to-softYellow-300 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform duration-300">
+                        PIA
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-neutralWarm-800 dark:text-white">
+                        Putri Intan<span class="text-pastelPink-500">.</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                    <a href="#about" class="hover:text-pastelPink-500 transition-colors">Tentang Saya</a>
+                    <a href="#experience" class="hover:text-pastelPink-500 transition-colors">Pengalaman & Proyek</a>
+                    <a href="#skills" class="hover:text-pastelPink-500 transition-colors">Keahlian</a>
+                    <a href="#contact" class="hover:text-pastelPink-500 transition-colors">Kontak</a>
+                    
+                    <!-- Theme Toggle -->
+                    <button id="themeToggle" class="p-2.5 rounded-xl bg-pastelPink-50 dark:bg-neutralWarm-800 text-neutralWarm-800 dark:text-neutralWarm-100 hover:bg-pastelPink-100 transition-colors" aria-label="Toggle Theme">
+                        <i class="fa-solid fa-moon text-base dark:hidden text-indigo-900"></i>
+                        <i class="fa-solid fa-sun text-base hidden dark:block text-softYellow-300"></i>
+                    </button>
+                </nav>
+
+                <!-- Mobile Navigation Controls -->
+                <div class="flex items-center gap-3 md:hidden">
+                    <button id="themeToggleMobile" class="p-2 rounded-xl bg-pastelPink-50 dark:bg-neutralWarm-800 text-neutralWarm-800 dark:text-neutralWarm-100">
+                        <i class="fa-solid fa-moon dark:hidden text-indigo-900"></i>
+                        <i class="fa-solid fa-sun hidden dark:block text-softYellow-300"></i>
+                    </button>
+                    <button id="mobileMenuBtn" class="p-2 rounded-xl text-neutralWarm-800 dark:text-neutralWarm-100 hover:bg-pastelPink-50 dark:hover:bg-neutralWarm-800">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-pastelPink-100 dark:border-neutralWarm-800 bg-white/95 dark:bg-neutralWarm-900/95 backdrop-blur-lg px-6 pt-2 pb-6 space-y-3">
+            <a href="#about" class="block py-2 text-neutralWarm-800 dark:text-neutralWarm-200 font-medium hover:text-pastelPink-500">Tentang Saya</a>
+            <a href="#experience" class="block py-2 text-neutralWarm-800 dark:text-neutralWarm-200 font-medium hover:text-pastelPink-500">Pengalaman & Proyek</a>
+            <a href="#skills" class="block py-2 text-neutralWarm-800 dark:text-neutralWarm-200 font-medium hover:text-pastelPink-500">Keahlian</a>
+            <a href="#contact" class="block py-2 text-neutralWarm-800 dark:text-neutralWarm-200 font-medium hover:text-pastelPink-500">Kontak</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-28 relative overflow-hidden">
+        <!-- Background decorative blobs -->
+        <div class="absolute top-12 left-10 w-72 h-72 bg-pastelPink-200/50 dark:bg-pastelPink-600/10 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute top-40 right-10 w-80 h-80 bg-softYellow-200/60 dark:bg-softYellow-500/10 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column Text -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-gradient-to-r from-pastelPink-100 to-softYellow-100 dark:from-pastelPink-950/60 dark:to-neutralWarm-800 text-pastelPink-600 dark:text-pastelPink-300 border border-pastelPink-200/60 dark:border-neutralWarm-700">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Mahasiswa Semester 5 Teknik Informatika
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        <span class="block text-2xl sm:text-3xl font-semibold text-pastelPink-500 mb-2 uppercase tracking-wider">Wonderful</span>
+                        Halo, Saya <br class="hidden sm:inline">
+                        <span class="bg-gradient-to-r from-pastelPink-500 via-pink-400 to-amber-400 bg-clip-text text-transparent">
+                            Putri Intan Aulya
+                        </span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-neutralWarm-600 dark:text-neutralWarm-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Fokus pada perancangan antarmuka <strong class="text-pastelPink-600 dark:text-pastelPink-300 font-semibold">UI/UX Design</strong>, analisis & dokumentasi sistem (<strong class="text-pastelPink-600 dark:text-pastelPink-300 font-semibold">UML & ERD</strong>), serta pengembangan aplikasi web yang estetis, fungsional, dan ramah pengguna.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#experience" class="px-7 py-3.5 rounded-2xl font-semibold text-white bg-pastelPink-500 hover:bg-pastelPink-600 glow-pink transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-2">
+                            <span>Lihat Portofolio</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#contact" class="px-7 py-3.5 rounded-2xl font-semibold text-neutralWarm-800 dark:text-white bg-softYellow-200 hover:bg-softYellow-300 dark:bg-neutralWarm-800 dark:hover:bg-neutralWarm-700 transition-all duration-300 hover:-translate-y-0.5 border border-softYellow-300/50 dark:border-neutralWarm-700">
+                            Hubungi Saya
+                        </a>
+                    </div>
+
+                    <!-- Social Media Links -->
+                    <div class="flex items-center justify-center lg:justify-start gap-4 pt-6">
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-white dark:bg-neutralWarm-800 flex items-center justify-center text-neutralWarm-600 dark:text-neutralWarm-300 hover:bg-pastelPink-500 hover:text-white dark:hover:bg-pastelPink-500 shadow-sm border border-pastelPink-100 dark:border-neutralWarm-700 transition-all transform hover:scale-110" aria-label="GitHub">
+                            <i class="fa-brands fa-github text-lg"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-white dark:bg-neutralWarm-800 flex items-center justify-center text-neutralWarm-600 dark:text-neutralWarm-300 hover:bg-pastelPink-500 hover:text-white dark:hover:bg-pastelPink-500 shadow-sm border border-pastelPink-100 dark:border-neutralWarm-700 transition-all transform hover:scale-110" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-white dark:bg-neutralWarm-800 flex items-center justify-center text-neutralWarm-600 dark:text-neutralWarm-300 hover:bg-pastelPink-500 hover:text-white dark:hover:bg-pastelPink-500 shadow-sm border border-pastelPink-100 dark:border-neutralWarm-700 transition-all transform hover:scale-110" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column Profile Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-72 sm:w-80 lg:w-96">
+                        <!-- Background Frame Decoration -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-pastelPink-300 to-softYellow-200 rounded-3xl rotate-6 blur-xl opacity-60"></div>
+                        
+                        <!-- Main Card -->
+                        <div class="relative glass-panel rounded-3xl p-6 shadow-xl text-center">
+                            
+                            <!-- Foto Profil dengan Fallback Avatar -->
+                            <div class="w-36 h-36 mx-auto rounded-full bg-gradient-to-tr from-pastelPink-400 to-softYellow-300 p-1 mb-5 shadow-md overflow-hidden relative group">
+                                <img 
+                                    src="foto-putri.jpg" 
+                                    alt="Putri Intan Aulya" 
+                                    class="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105"
+                                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/ffe4ed/f43f73?text=Putri+Intan';"
+                                >
+                            </div>
+
+                            <h3 class="font-bold text-xl text-neutralWarm-800 dark:text-white">Putri Intan Aulya</h3>
+                            <p class="text-sm font-medium text-pastelPink-600 dark:text-pastelPink-300 mt-1">Teknik Informatika - Semester 5</p>
+                            
+                            <div class="mt-6 pt-6 border-t border-pastelPink-100 dark:border-neutralWarm-700/80 grid grid-cols-2 gap-4 text-center">
+                                <div class="p-2 rounded-2xl bg-pastelPink-50/50 dark:bg-neutralWarm-800/50">
+                                    <span class="block text-2xl font-extrabold text-neutralWarm-800 dark:text-white">10+</span>
+                                    <span class="text-xs text-neutralWarm-500 dark:text-neutralWarm-400">Proyek Akademik</span>
+                                </div>
+                                <div class="p-2 rounded-2xl bg-softYellow-50/50 dark:bg-neutralWarm-800/50">
+                                    <span class="block text-2xl font-extrabold text-neutralWarm-800 dark:text-white">3.8+</span>
+                                    <span class="text-xs text-neutralWarm-500 dark:text-neutralWarm-400">IPK Semestral</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 bg-white/60 dark:bg-neutralWarm-800/40 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-wider text-pastelPink-500 bg-pastelPink-50 dark:bg-neutralWarm-800 px-3.5 py-1.5 rounded-full border border-pastelPink-200/50">
+                    Biodata & Riwayat
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-neutralWarm-800 dark:text-white mt-3">Tentang Saya</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-pastelPink-400 to-softYellow-300 mx-auto rounded-full mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Ringkasan Profil -->
+                <div class="lg:col-span-6 space-y-6">
+                    <h3 class="text-2xl font-bold text-neutralWarm-800 dark:text-white">
+                        Pengembang Perangkat Lunak & Perancang UI/UX yang Berdikari
+                    </h3>
+                    <p class="text-neutralWarm-600 dark:text-neutralWarm-300 leading-relaxed">
+                        Saya adalah mahasiswa aktif program studi Teknik Informatika semester 5 yang memiliki ketertarikan tinggi pada dunia rekayasa perangkat lunak. Spesialisasi utama saya berfokus pada tahap analisis sistem (dokumentasi UML & perancangan basis data ERD) serta pembuatan antarmuka pengguna (wireframe & UI/UX design) yang responsif.
+                    </p>
+                    <p class="text-neutralWarm-600 dark:text-neutralWarm-300 leading-relaxed">
+                        Selalu bersemangat untuk mempelajari teknologi antarmuka web terbaru, bekerja secara kolaboratif dalam tim, dan memecahkan permasalahan kompleks menjadi solusi digital yang intuitif.
+                    </p>
+
+                    <!-- Statistik Highlight -->
+                    <div class="grid grid-cols-3 gap-4 pt-4">
+                        <div class="p-4 rounded-2xl bg-pastelPink-50 dark:bg-neutralWarm-800 border border-pastelPink-100 dark:border-neutralWarm-700 text-center">
+                            <i class="fa-solid fa-graduation-cap text-2xl text-pastelPink-500 mb-2"></i>
+                            <span class="block text-xs text-neutralWarm-500 dark:text-neutralWarm-400">Status</span>
+                            <span class="font-bold text-sm text-neutralWarm-800 dark:text-white">Aktif MHS</span>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-softYellow-50 dark:bg-neutralWarm-800 border border-softYellow-200 dark:border-neutralWarm-700 text-center">
+                            <i class="fa-solid fa-code text-2xl text-amber-500 mb-2"></i>
+                            <span class="block text-xs text-neutralWarm-500 dark:text-neutralWarm-400">Fokus</span>
+                            <span class="font-bold text-sm text-neutralWarm-800 dark:text-white">UI/UX & Web</span>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-pastelPink-50 dark:bg-neutralWarm-800 border border-pastelPink-100 dark:border-neutralWarm-700 text-center">
+                            <i class="fa-solid fa-location-dot text-2xl text-pastelPink-500 mb-2"></i>
+                            <span class="block text-xs text-neutralWarm-500 dark:text-neutralWarm-400">Lokasi</span>
+                            <span class="font-bold text-sm text-neutralWarm-800 dark:text-white">Indonesia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Pendidikan & Pengalaman -->
+                <div class="lg:col-span-6 space-y-6">
+                    <h3 class="text-xl font-bold text-neutralWarm-800 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-timeline text-pastelPink-500"></i>
+                        <span>Langkah & Pendidikan</span>
+                    </h3>
+
+                    <div class="relative pl-6 border-l-2 border-pastelPink-200 dark:border-neutralWarm-700 space-y-8">
+                        
+                        <!-- Item Timeline 1 -->
+                        <div class="relative group">
+                            <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-pastelPink-500 ring-4 ring-pastelPink-100 dark:ring-neutralWarm-800"></div>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-pastelPink-100 dark:bg-neutralWarm-800 text-pastelPink-600 dark:text-pastelPink-300">2022 - Sekarang</span>
+                            <h4 class="text-lg font-bold text-neutralWarm-800 dark:text-white mt-2">S1 Teknik Informatika</h4>
+                            <p class="text-xs text-neutralWarm-500 dark:text-neutralWarm-400">Universitas / Perguruan Tinggi</p>
+                            <p class="text-sm text-neutralWarm-600 dark:text-neutralWarm-300 mt-2">
+                                Mempelajari Algoritma & Pemrograman, Pemodelan Perangkat Lunak, Basis Data, UI/UX Design, serta Pemrograman Web.
+                            </p>
+                        </div>
+
+                        <!-- Item Timeline 2 -->
+                        <div class="relative group">
+                            <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-softYellow-400 ring-4 ring-softYellow-100 dark:ring-neutralWarm-800"></div>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-softYellow-100 dark:bg-neutralWarm-800 text-amber-700 dark:text-softYellow-300">2024</span>
+                            <h4 class="text-lg font-bold text-neutralWarm-800 dark:text-white mt-2">Studi Independen / Pelatihan UI/UX</h4>
+                            <p class="text-xs text-neutralWarm-500 dark:text-neutralWarm-400">Sertifikasi & Workshop Online</p>
+                            <p class="text-sm text-neutralWarm-600 dark:text-neutralWarm-300 mt-2">
+                                Menyelesaikan pelatihan riset pengguna, pembuatan wireframe dengan Balsamiq, serta pembuatan prototipe interaktif menggunakan Figma.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Projects Section -->
+    <section id="experience" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-pastelPink-500 bg-pastelPink-50 dark:bg-neutralWarm-800 px-3.5 py-1.5 rounded-full border border-pastelPink-200/50">
+                    Karya & Hasil Belajar
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-neutralWarm-800 dark:text-white mt-3">Pengalaman & Proyek</h2>
+                <p class="mt-3 text-neutralWarm-600 dark:text-neutralWarm-300 text-sm">Daftar proyek akademik dan portofolio studi kasus yang telah diselesaikan.</p>
+            </div>
+
+            <!-- Filter Categories -->
+            <div class="flex flex-wrap justify-center gap-2 mb-12">
+                <button class="filter-btn active px-5 py-2.5 rounded-2xl text-sm font-semibold transition-all duration-300" data-filter="all">Semua Proyek</button>
+                <button class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-semibold transition-all duration-300 bg-white dark:bg-neutralWarm-800 text-neutralWarm-600 dark:text-neutralWarm-300 hover:bg-pastelPink-50" data-filter="uiux">UI/UX Design</button>
+                <button class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-semibold transition-all duration-300 bg-white dark:bg-neutralWarm-800 text-neutralWarm-600 dark:text-neutralWarm-300 hover:bg-pastelPink-50" data-filter="system">System Analysis</button>
+                <button class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-semibold transition-all duration-300 bg-white dark:bg-neutralWarm-800 text-neutralWarm-600 dark:text-neutralWarm-300 hover:bg-pastelPink-50" data-filter="web">Web App</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="project-card group bg-white dark:bg-neutralWarm-800 rounded-3xl overflow-hidden border border-pastelPink-100 dark:border-neutralWarm-700 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="uiux">
+                    <div class="h-48 bg-gradient-to-tr from-pastelPink-300 to-pastelPink-400 p-6 flex items-center justify-center text-white relative overflow-hidden">
+                        <i class="fa-solid fa-mobile-screen-button text-7xl opacity-30 group-hover:scale-110 transition-transform duration-500"></i>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-md">UI/UX Design</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-neutralWarm-800 dark:text-white mb-2">Desain Wireframe App (Balsamiq)</h3>
+                        <p class="text-sm text-neutralWarm-600 dark:text-neutralWarm-400 mb-4 line-clamp-2">Perancangan 5 alur antarmuka aplikasi interaktif menggunakan Balsamiq Mockups untuk Ujian Tengah Semester.</p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-pastelPink-50 dark:bg-neutralWarm-700 text-pastelPink-600 dark:text-pastelPink-300">Balsamiq</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-pastelPink-50 dark:bg-neutralWarm-700 text-pastelPink-600 dark:text-pastelPink-300">Wireframing</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-neutralWarm-100 dark:border-neutralWarm-700">
+                            <span class="text-xs font-semibold text-pastelPink-500">Proyek Kuliah</span>
+                            <button onclick="openModal('Desain Wireframe App', 'Perancangan 5 alur antarmuka aplikasi interaktif menggunakan Balsamiq Mockups. Mencakup analisis alur penggunaan, sketsa kasar, hingga prototipe fungsional.', 'Balsamiq, Figma, Wireframe')" class="text-xs font-bold text-neutralWarm-700 dark:text-neutralWarm-200 hover:text-pastelPink-500 flex items-center gap-1">
+                                Detail <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card group bg-white dark:bg-neutralWarm-800 rounded-3xl overflow-hidden border border-pastelPink-100 dark:border-neutralWarm-700 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="system">
+                    <div class="h-48 bg-gradient-to-tr from-amber-300 to-softYellow-400 p-6 flex items-center justify-center text-neutralWarm-800 relative overflow-hidden">
+                        <i class="fa-solid fa-diagram-project text-7xl opacity-30 group-hover:scale-110 transition-transform duration-500"></i>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-white/40 backdrop-blur-md">System Analysis</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-neutralWarm-800 dark:text-white mb-2">Dokumentasi UML & ERD Sistem Basis Data</h3>
+                        <p class="text-sm text-neutralWarm-600 dark:text-neutralWarm-400 mb-4 line-clamp-2">Analisis struktur data lengkap dengan pemodelan Use Case, Activity Diagram, dan ERD selama 1 semester.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-softYellow-100 dark:bg-neutralWarm-700 text-amber-800 dark:text-softYellow-300">UML</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-softYellow-100 dark:bg-neutralWarm-700 text-amber-800 dark:text-softYellow-300">ERD</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-softYellow-100 dark:bg-neutralWarm-700 text-amber-800 dark:text-softYellow-300">MySQL</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-neutralWarm-100 dark:border-neutralWarm-700">
+                            <span class="text-xs font-semibold text-amber-600 dark:text-amber-400">Analisis Sistem</span>
+                            <button onclick="openModal('Dokumentasi UML & ERD', 'Penyusunan dokumen spesifikasi kebutuhan perangkat lunak (SKPL) lengkap dengan Use Case Diagram, Class Diagram, Sequence Diagram, dan Relasi Entitas (ERD) basis data relasional.', 'StarUML, MySQL, Draw.io')" class="text-xs font-bold text-neutralWarm-700 dark:text-neutralWarm-200 hover:text-pastelPink-500 flex items-center gap-1">
+                                Detail <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card group bg-white dark:bg-neutralWarm-800 rounded-3xl overflow-hidden border border-pastelPink-100 dark:border-neutralWarm-700 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-category="web">
+                    <div class="h-48 bg-gradient-to-tr from-pink-400 to-softYellow-300 p-6 flex items-center justify-center text-white relative overflow-hidden">
+                        <i class="fa-solid fa-laptop-code text-7xl opacity-30 group-hover:scale-110 transition-transform duration-500"></i>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-md">Web App</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-neutralWarm-800 dark:text-white mb-2">Website Portofolio Single-Page Responsif</h3>
+                        <p class="text-sm text-neutralWarm-600 dark:text-neutralWarm-400 mb-4 line-clamp-2">Pengembangan antarmuka website responsif dengan estetika warna pastel, dukungan tema gelap/terang, dan Tailwind CSS.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-pastelPink-50 dark:bg-neutralWarm-700 text-pastelPink-600 dark:text-pastelPink-300">HTML5</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-pastelPink-50 dark:bg-neutralWarm-700 text-pastelPink-600 dark:text-pastelPink-300">Tailwind CSS</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-pastelPink-50 dark:bg-neutralWarm-700 text-pastelPink-600 dark:text-pastelPink-300">JavaScript</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-neutralWarm-100 dark:border-neutralWarm-700">
+                            <span class="text-xs font-semibold text-pastelPink-500">Front-End Web</span>
+                            <button onclick="openModal('Website Portofolio Responsif', 'Website portofolio pribadi interaktif dengan desain minimalis modern. Dibuat menggunakan struktur HTML5 bersih, Tailwind CSS via CDN, serta utilitas JavaScript interaktif.', 'HTML, Tailwind CSS, JavaScript')" class="text-xs font-bold text-neutralWarm-700 dark:text-neutralWarm-200 hover:text-pastelPink-500 flex items-center gap-1">
+                                Detail <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- My Skills Section -->
+    <section id="skills" class="py-20 bg-white/60 dark:bg-neutralWarm-800/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-wider text-pastelPink-500 bg-pastelPink-50 dark:bg-neutralWarm-800 px-3.5 py-1.5 rounded-full border border-pastelPink-200/50">
+                    Kemampuan Teknis
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-neutralWarm-800 dark:text-white mt-3">Keahlian Saya</h2>
+                <p class="mt-3 text-neutralWarm-600 dark:text-neutralWarm-300 text-sm">Penguasaan alat kerja dan teknologi rekayasa perangkat lunak.</p>
+            </div>
+
+            <!-- Skill Badges Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Category 1 -->
+                <div class="bg-white dark:bg-neutralWarm-800 rounded-3xl p-6 border border-pastelPink-100 dark:border-neutralWarm-700 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-pastelPink-100 dark:bg-pastelPink-900/40 flex items-center justify-center text-pastelPink-500 font-bold">
+                            <i class="fa-solid fa-pen-nib text-lg"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-neutralWarm-800 dark:text-white">UI/UX & Design</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1.5">
+                                <span class="text-neutralWarm-700 dark:text-neutralWarm-300">Balsamiq Mockups</span>
+                                <span class="text-pastelPink-500">90%</span>
+                            </div>
+                            <div class="w-full h-2 bg-neutralWarm-100 dark:bg-neutralWarm-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-pastelPink-400 rounded-full" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1.5">
+                                <span class="text-neutralWarm-700 dark:text-neutralWarm-300">Figma (Basic Prototype)</span>
+                                <span class="text-pastelPink-500">85%</span>
+                            </div>
+                            <div class="w-full h-2 bg-neutralWarm-100 dark:bg-neutralWarm-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-pastelPink-400 rounded-full" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="bg-white dark:bg-neutralWarm-800 rounded-3xl p-6 border border-pastelPink-100 dark:border-neutralWarm-700 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-softYellow-100 dark:bg-neutralWarm-700 flex items-center justify-center text-amber-600 dark:text-softYellow-300 font-bold">
+                            <i class="fa-solid fa-sitemap text-lg"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-neutralWarm-800 dark:text-white">System Analysis</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1.5">
+                                <span class="text-neutralWarm-700 dark:text-neutralWarm-300">UML Diagramming</span>
+                                <span class="text-amber-600 dark:text-softYellow-300">88%</span>
+                            </div>
+                            <div class="w-full h-2 bg-neutralWarm-100 dark:bg-neutralWarm-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-softYellow-300 rounded-full" style="width: 88%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1.5">
+                                <span class="text-neutralWarm-700 dark:text-neutralWarm-300">ERD & Relasi Basis Data</span>
+                                <span class="text-amber-600 dark:text-softYellow-300">85%</span>
+                            </div>
+                            <div class="w-full h-2 bg-neutralWarm-100 dark:bg-neutralWarm-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-softYellow-300 rounded-full" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="bg-white dark:bg-neutralWarm-800 rounded-3xl p-6 border border-pastelPink-100 dark:border-neutralWarm-700 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-pastelPink-100 dark:bg-pastelPink-900/40 flex items-center justify-center text-pastelPink-500 font-bold">
+                            <i class="fa-solid fa-code text-lg"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-neutralWarm-800 dark:text-white">Web Development</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1.5">
+                                <span class="text-neutralWarm-700 dark:text-neutralWarm-300">HTML5 & Tailwind CSS</span>
+                                <span class="text-pastelPink-500">82%</span>
+                            </div>
+                            <div class="w-full h-2 bg-neutralWarm-100 dark:bg-neutralWarm-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-pastelPink-400 rounded-full" style="width: 82%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1.5">
+                                <span class="text-neutralWarm-700 dark:text-neutralWarm-300">JavaScript Basics & MySQL</span>
+                                <span class="text-pastelPink-500">78%</span>
+                            </div>
+                            <div class="w-full h-2 bg-neutralWarm-100 dark:bg-neutralWarm-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-pastelPink-400 rounded-full" style="width: 78%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Skill Tags / Badges Carousel -->
+            <div class="mt-12 flex flex-wrap justify-center gap-3">
+                <span class="px-4 py-2 rounded-2xl bg-white dark:bg-neutralWarm-800 text-xs font-semibold text-neutralWarm-700 dark:text-neutralWarm-300 border border-pastelPink-100 dark:border-neutralWarm-700 shadow-sm">
+                    <i class="fa-brands fa-figma text-pastelPink-500 mr-1.5"></i> Figma
+                </span>
+                <span class="px-4 py-2 rounded-2xl bg-white dark:bg-neutralWarm-800 text-xs font-semibold text-neutralWarm-700 dark:text-neutralWarm-300 border border-pastelPink-100 dark:border-neutralWarm-700 shadow-sm">
+                    <i class="fa-solid fa-cubes text-amber-500 mr-1.5"></i> Balsamiq
+                </span>
+                <span class="px-4 py-2 rounded-2xl bg-white dark:bg-neutralWarm-800 text-xs font-semibold text-neutralWarm-700 dark:text-neutralWarm-300 border border-pastelPink-100 dark:border-neutralWarm-700 shadow-sm">
+                    <i class="fa-brands fa-html5 text-orange-500 mr-1.5"></i> HTML5
+                </span>
+                <span class="px-4 py-2 rounded-2xl bg-white dark:bg-neutralWarm-800 text-xs font-semibold text-neutralWarm-700 dark:text-neutralWarm-300 border border-pastelPink-100 dark:border-neutralWarm-700 shadow-sm">
+                    <i class="fa-brands fa-css3-alt text-blue-500 mr-1.5"></i> Tailwind CSS
+                </span>
+                <span class="px-4 py-2 rounded-2xl bg-white dark:bg-neutralWarm-800 text-xs font-semibold text-neutralWarm-700 dark:text-neutralWarm-300 border border-pastelPink-100 dark:border-neutralWarm-700 shadow-sm">
+                    <i class="fa-database fa-solid text-emerald-500 mr-1.5"></i> MySQL
+                </span>
+                <span class="px-4 py-2 rounded-2xl bg-white dark:bg-neutralWarm-800 text-xs font-semibold text-neutralWarm-700 dark:text-neutralWarm-300 border border-pastelPink-100 dark:border-neutralWarm-700 shadow-sm">
+                    <i class="fa-brands fa-git-alt text-red-500 mr-1.5"></i> Git & GitHub
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Details -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-pastelPink-500 bg-pastelPink-50 dark:bg-neutralWarm-800 px-3.5 py-1.5 rounded-full border border-pastelPink-200/50">
+                        Kontak & Kolaborasi
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-neutralWarm-800 dark:text-white">Mari Terhubung!</h2>
+                    <p class="text-neutralWarm-600 dark:text-neutralWarm-300 text-sm leading-relaxed">
+                        Terbuka untuk diskusi proyek akademik, kolaborasi tim, maupun kesempatan magang di bidang Teknik Informatika & UI/UX.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-2xl bg-pastelPink-100 dark:bg-neutralWarm-800 flex items-center justify-center text-pastelPink-500 shrink-0 mt-1">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-neutralWarm-800 dark:text-white text-sm">Email</h4>
+                                <p class="text-sm text-neutralWarm-600 dark:text-neutralWarm-400">putri.intan.aulya@example.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-2xl bg-softYellow-100 dark:bg-neutralWarm-800 flex items-center justify-center text-amber-600 shrink-0 mt-1">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-neutralWarm-800 dark:text-white text-sm">Program Studi</h4>
+                                <p class="text-sm text-neutralWarm-600 dark:text-neutralWarm-400">Teknik Informatika (Semester 5)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-2xl bg-pastelPink-100 dark:bg-neutralWarm-800 flex items-center justify-center text-pastelPink-500 shrink-0 mt-1">
+                                <i class="fa-solid fa-earth-asia"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-neutralWarm-800 dark:text-white text-sm">Status Server</h4>
+                                <p class="text-sm text-neutralWarm-600 dark:text-neutralWarm-400">InfinityFree Web Hosting Ready</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form Card -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white dark:bg-neutralWarm-800 rounded-3xl p-8 border border-pastelPink-100 dark:border-neutralWarm-700 shadow-sm">
+                        
+                        <!-- Notification Alert Message Box -->
+                        <div id="formAlert" class="hidden mb-6 p-4 rounded-2xl text-sm font-medium"></div>
+
+                        <form id="contactForm" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold text-neutralWarm-700 dark:text-neutralWarm-300 mb-2 uppercase tracking-wider">Nama Lengkap</label>
+                                    <input type="text" id="senderName" required placeholder="Masukkan nama Anda" class="w-full px-4 py-3.5 rounded-2xl border border-pastelPink-100 dark:border-neutralWarm-700 bg-neutralWarm-50 dark:bg-neutralWarm-900 text-neutralWarm-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-pastelPink-400 text-sm transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-neutralWarm-700 dark:text-neutralWarm-300 mb-2 uppercase tracking-wider">Email</label>
+                                    <input type="email" id="senderEmail" required placeholder="email@contoh.com" class="w-full px-4 py-3.5 rounded-2xl border border-pastelPink-100 dark:border-neutralWarm-700 bg-neutralWarm-50 dark:bg-neutralWarm-900 text-neutralWarm-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-pastelPink-400 text-sm transition-all">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-neutralWarm-700 dark:text-neutralWarm-300 mb-2 uppercase tracking-wider">Pesan</label>
+                                <textarea id="senderMessage" rows="4" required placeholder="Tuliskan pesan atau penawaran Anda di sini..." class="w-full px-4 py-3.5 rounded-2xl border border-pastelPink-100 dark:border-neutralWarm-700 bg-neutralWarm-50 dark:bg-neutralWarm-900 text-neutralWarm-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-pastelPink-400 text-sm transition-all"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 rounded-2xl bg-pastelPink-500 hover:bg-pastelPink-600 text-white font-bold text-sm shadow-lg shadow-pastelPink-500/30 transition-all duration-300 hover:-translate-y-0.5">
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-pastelPink-100 dark:border-neutralWarm-800 text-center text-xs text-neutralWarm-500 dark:text-neutralWarm-400">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2026 Putri Intan Aulya. Portofolio Teknik Informatika Semester 5.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Project Modal -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div class="bg-white dark:bg-neutralWarm-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-pastelPink-100 dark:border-neutralWarm-700 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeModal()" class="absolute top-5 right-5 text-neutralWarm-400 hover:text-neutralWarm-600 dark:hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 id="modalTitle" class="text-xl font-bold text-neutralWarm-800 dark:text-white mb-3">Judul Proyek</h3>
+            <p id="modalDescription" class="text-sm text-neutralWarm-600 dark:text-neutralWarm-300 mb-6 leading-relaxed">Deskripsi proyek...</p>
+            <div class="pt-4 border-t border-neutralWarm-100 dark:border-neutralWarm-700">
+                <span class="block text-xs font-bold text-neutralWarm-500 dark:text-neutralWarm-400 mb-2 uppercase">Teknologi / Tools:</span>
+                <p id="modalTools" class="text-xs font-semibold text-pastelPink-500">Tools used</p>
+            </div>
+            <button onclick="closeModal()" class="mt-6 w-full py-3 rounded-xl bg-neutralWarm-100 dark:bg-neutralWarm-700 text-neutralWarm-800 dark:text-white font-semibold text-sm hover:bg-neutralWarm-200 transition-colors">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Interaktif -->
+    <script>
+        // Toggle Dark/Light Theme
+        const themeToggleBtns = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')];
+        
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggleBtns.forEach(btn => {
+            btn?.addEventListener('click', () => {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+
+        // Toggle Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn?.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Filter Proyek Cards
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Project Detail Modal Functions
+        function openModal(title, description, tools) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDescription').innerText = description;
+            document.getElementById('modalTools').innerText = tools;
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // Contact Form Custom Alert (Tanpa alert native)
+        document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const senderName = document.getElementById('senderName').value;
+            const formAlert = document.getElementById('formAlert');
+            
+            formAlert.innerText = `Terima kasih ${senderName}! Pesan Anda berhasil terkirim. Saya akan segera menghubungi Anda.`;
+            formAlert.className = "mb-6 p-4 rounded-2xl text-sm font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200 dark:bg-emerald-950 dark:text-emerald-200";
+            formAlert.classList.remove('hidden');
+
+            e.target.reset();
+
+            setTimeout(() => {
+                formAlert.classList.add('hidden');
+            }, 6000);
+        });
+    </script>
+</body>
+</html>
+```
+
+### Instruksi Pemasangan di InfinityFree Hosting:
+
+1. Buka **File Manager** InfinityFree Anda dan buka folder **`htdocs`**.
+2. Hapus atau ganti isi file **`index.html`** bawaan dengan seluruh isi file di atas.
+3. Upload foto profil Anda ke folder `htdocs` dan beri nama file **`foto-putri.jpg`**. Jika foto gagal dimuat, secara otomatis sistem akan menampilkan *avatar placeholder* cadangan secara aman.
